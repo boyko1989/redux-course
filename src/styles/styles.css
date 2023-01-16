@@ -1,9 +1,11 @@
+@import "vendors/bootstrap.css";
+
 body {
   transition: .2s all ease-in;
 }
 
 body.dark {
-  background: #343a40;
+  background: #4c5058;
   color: #fff;
 }
 
