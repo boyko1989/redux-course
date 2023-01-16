@@ -1,4 +1,4 @@
-import {createStore} from "./createStore";
+import {createStore} from 'redux';
 import {rootReducer} from "./redux/rootReducer";
 import "./styles/styles.css";
 
@@ -11,11 +11,11 @@ const themeBtn = document.getElementById("theme");
 const store = createStore(rootReducer, 0)
 
 addBtn.addEventListener("click", () => {
-  store.dispatch({type:'INCREMENT'})
+    store.dispatch({type:'INCREMENT'})
 });
 
 subBtn.addEventListener("click", () => {
-  store.dispatch({type:'DECREMENT'})
+    store.dispatch({type:'DECREMENT'})
 });
 
 asyncBtn.addEventListener("click", function () {
@@ -23,13 +23,13 @@ asyncBtn.addEventListener("click", function () {
 });
 
 store.subscribe(() => {
-  const state = store.getState()
+    const state = store.getState()
 
-  counter.textContent = state
+    counter.textContent = state
 })
 
 store.dispatch({type: 'INIT_APPLICATION'})
 
 themeBtn.addEventListener("click", function () {
-  // document.body.classList.toggle("dark");
+    // document.body.classList.toggle("dark");
 });
