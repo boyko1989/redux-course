@@ -1,4 +1,4 @@
-import {DECREMENT, INCREMENT, CHANGE_THEME} from "./types";
+import {DECREMENT, INCREMENT, CHANGE_THEME, ENABLE_BUTTONS, DISABLE_BUTTONS} from "./types";
 import {combineReducers} from "redux";
 
 function counterReducer(state = 0, action) {
@@ -12,14 +12,20 @@ function counterReducer(state = 0, action) {
 }
 
 const initialThemeState = {
-    value: 'ligth'
+    value: 'ligth',
+    disabled: false
 }
 
-function themReducer(state=initialThemeState, action){
+function themReducer(state = initialThemeState, action) {
     switch (action.type) {
         case CHANGE_THEME:
             return {...state, value: action.payload}
-        default: return state
+        case ENABLE_BUTTONS:
+            return {...state, disabled: false}
+        case DISABLE_BUTTONS:
+            return {...state, disabled: true}
+        default:
+            return state
     }
 }
 

@@ -21,7 +21,7 @@ const themeBtn = document.getElementById("theme");
 //     }
 // }
 
-const store = createStore (
+const store = createStore(
     rootReducer,
     applyMiddleware(thunk, logger)
 )
@@ -35,16 +35,8 @@ subBtn.addEventListener("click", () => {
 });
 
 asyncBtn.addEventListener("click", function () {
-    store.dispatch(asyncIncrement ())
+    store.dispatch(asyncIncrement())
 });
-
-store.subscribe(() => {
-    const state = store.getState()
-    counter.textContent = state.counter
-    document.body.className = state.theme.value
-})
-
-store.dispatch({type: 'INIT_APPLICATION'})
 
 themeBtn.addEventListener("click", function () {
     const newTheme = document.body.classList.contains('ligth')
@@ -52,3 +44,16 @@ themeBtn.addEventListener("click", function () {
         : 'ligth'
     store.dispatch(changeTheme(newTheme))
 });
+
+store.subscribe(() => {
+    const state = store.getState()
+
+    counter.textContent = state.counter
+    document.body.className = state.theme.value;
+
+    [addBtn, subBtn, themeBtn, asyncBtn].forEach(btn =>  {
+        btn.disabled = state.theme.disabled
+    })
+})
+
+store.dispatch({type: 'INIT_APPLICATION'})
